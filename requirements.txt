@@ -4,3 +4,4 @@ python-telegram-bot
 httplib2
 configparser
 requests
+pathlib

@@ -1,3 +1,4 @@
+import os
 import xml.etree.ElementTree as ElementTree
 
 
@@ -16,4 +17,4 @@ class ACDSeeXmp:
         Return parsed object
         :return: Root tree object
         """
-        return {}
+        return {'filename': os.path.splitext(self.file_name)[0]}
