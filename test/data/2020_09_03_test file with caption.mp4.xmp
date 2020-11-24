@@ -10,7 +10,7 @@
    <acdsee:rating>0</acdsee:rating>
    <acdsee:author/>
    <acdsee:datetime/>
-   <acdsee:caption/>
+   <acdsee:caption>Test caption</acdsee:caption>
    <xmp:Label/>
   </rdf:Description>
  </rdf:RDF>

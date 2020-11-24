@@ -3,7 +3,10 @@ import requests
 
 class TelegramBot:
 
-    url = 'https://api.telegram.org/bot'
+    API_ENDPOINT_URL = 'https://api.telegram.org/bot'
+    GET_UPDATES_PATH = 'getUpdates'
+    SEND_MESSAGE_PATH = 'sendMessage'
+    SEND_VIDEO_PATH = 'sendVideo'
 
     def __init__(self, config):
         """
@@ -21,12 +24,38 @@ class TelegramBot:
         :param path: End part of the url
         :return: Full resulting url
         """
-        return self.url + self.token + '/' + path
+        return self.API_ENDPOINT_URL + self.token + '/' + path
 
     def get_updates(self):
         """
         Get list og updates
         :return:
         """
-        response = requests.get(self.get_url('getUpdates'))
-        return response.json()['result']
+        response = requests.get(self.get_url(self.GET_UPDATES_PATH))
+        response_json = response.json()
+
+        if not response_json['ok']:
+            raise Exception('Failed to get updates')
+
+        return response_json['result']
+
+    def send_data(self, data):
+        caption = data['title'] + '\n\n' + data['text']
+
+        files = {
+            'video': open(data['sidecar_file_name'], 'rb')
+        }
+
+        values = {
+            'chat_id': self.chat_id,
+            'caption': caption,
+            #'parse_mode': 'MarkdownV2'
+        }
+
+        response = requests.post(self.get_url(self.SEND_VIDEO_PATH), files=files, data=values)
+        response_json = response.json()
+
+        if not response_json['ok']:
+            raise Exception('Failed to send data: ' + response.text)
+
+        return response_json['result']

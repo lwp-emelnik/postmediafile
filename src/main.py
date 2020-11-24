@@ -33,6 +33,9 @@ def main(argv):
         input_data = ACDSeeXmp(input_file_name, input_file_content)
         input_data_parsed = input_data.get_parsed_data()
 
+        telegram_bot.send_data(input_data_parsed)
+        print('Successfully send via Telegram API!')
+
 
 def print_help(executable):
     print('usage:', executable, '<input_file_path>')

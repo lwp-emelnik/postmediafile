@@ -11,7 +11,7 @@ The script is being developed, it is not ready to be used yet.
 
 * Input files:
 
-    * ACDSee XMP file (with filled "notes" field inside)
+    * ACDSee XMP file (filled "notes" field inside is mandatory, "caption" is optional, filename will be used if caption is not set)
 
 * Output services:
 
