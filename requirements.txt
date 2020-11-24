@@ -1,6 +1,4 @@
 google-api-python-client
-logging
-python-telegram-bot
 httplib2
 configparser
 requests

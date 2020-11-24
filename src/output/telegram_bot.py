@@ -35,7 +35,7 @@ class TelegramBot:
         response_json = response.json()
 
         if not response_json['ok']:
-            raise Exception('Failed to get updates')
+            raise Exception('Failed to get updates: ' + response.text)
 
         return response_json['result']
 
