@@ -4,7 +4,7 @@ This is a script that takes a video or photo file and posts it to a Telegram cha
 
 The script can be used to support the scenario, when a user keeps all their media files and comments to them locally, and posts some of them to the Internet. 
 
-The script is being developed, it is not ready to be used yet.
+Just clone or [download](https://github.com/lwp-emelnik/videouploader/archive/main.zip) this repository, it's portable ready to use.
 
 
 ### Currently supported
@@ -17,7 +17,7 @@ The script is being developed, it is not ready to be used yet.
 
     * Telegram (bot will send the file with description to the specified chat)
 
-    * Blogger (a new post will be created for the specified account) `//in progress//`
+    * Blogger (a new post will be created for the specified account and will be open in browser for editing)
 
 
 ### Configuration
@@ -104,4 +104,19 @@ This could be easily done with python package manager (in console):
 
 ### Usage
 
-After all the configurations are done...
+After you've downloaded the app and all the configurations are done, you can easily use it in the console:
+
+```bash
+$ ./run.sh /path/to/file
+# use 'run.bat' for windows #
+```
+
+For example (Windows):
+
+```batch
+C:\Users\user> C:\Users\user\Desktop\videouploader\run.bat "C:\Users\user\Desktop\videouploader\test\data\2020_09_03_test file with caption.mp4.xmp"
+```
+
+Also, you can use a context menu option "Open with" and associate the "run.bat" file there, after that you can just run the same thing much easier with doubleclick on XMP file.
+
+*Note: app can process only one file/argument at once.*
