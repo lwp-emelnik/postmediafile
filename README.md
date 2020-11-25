@@ -86,6 +86,9 @@ Put client id and client secret to the configuration file:
    
    *Note: the application should be able to write data to its config file `data/config.ini`, where it will save the `refresh_token` value.*
 
+4. Put a `blog_id` value into config - you can see this ID in the browser's address bar when you are configuring your blog.
+For example in the url `https://www.blogger.com/u/1/blog/settings/7238093356789249538` - ID is "7238093356789249538". 
+
 
 #### Python (Windows)
 
