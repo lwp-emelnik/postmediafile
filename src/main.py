@@ -23,7 +23,7 @@ def main(argv):
     else:
         input_file_name = argv[1]
         try:
-            input_file = open(input_file_name, 'r')
+            input_file = open(input_file_name, 'r', encoding='utf-8')
             input_file_content = input_file.read()
         except OSError:
             print('Could not open/read file:', input_file_name)
@@ -45,6 +45,8 @@ def main(argv):
 
 def print_help(executable):
     print('usage:', executable, '<input_file_path>')
+    print(' or:', executable, '--list-telegram-chats')
+    print(' or:', executable, '--blogger-login')
 
 
 def list_telegram_chats(telegram_bot):

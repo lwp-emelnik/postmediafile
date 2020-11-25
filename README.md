@@ -11,7 +11,7 @@ The script is being developed, it is not ready to be used yet.
 
 * Input files:
 
-    * ACDSee XMP file (filled "notes" field inside is mandatory, "caption" is optional, filename will be used if caption is not set)
+    * ACDSee XMP file (filled "notes" field inside is mandatory, "caption" is optional, file name will be used if caption is not set)
 
 * Output services:
 
@@ -28,18 +28,19 @@ The script is being developed, it is not ready to be used yet.
  
 2. Put the **token** into the configuration file `data/config.ini` below the `[telegram_bot]` section.
 
-3. [Add this bot to the needed group chat](https://stackoverflow.com/questions/37338101/how-to-add-a-bot-to-a-telegram-group) (may differ depending on used Telegram app).
+3. [Add this bot to the needed chat](https://stackoverflow.com/questions/37338101/how-to-add-a-bot-to-a-telegram-group) (may differ depending on used Telegram app).
 
-4. To be able to send messages to some chat, id of that chat should be placed to the configuration file.
-First of all, you have to run the script with parameter `--list-telegram-chats` where you will see something like this:
+4. To be able to send messages to some chat, ID of that chat should be placed in the configuration file first.
+For this, you can use the script with parameter `--list-telegram-chats` where you will see something like this:
 
-   ```
-   $ ./run.sh --list-telegram-chats
+   ```bash
+   $ /path/to/app/run.sh --list-telegram-chats
+   # use 'run.bat' for windows #
    ID: 264877391 | Some User
    ID: -469669482 | SomeGroup
    ```
    
-    So just copy needed id into the file `data/config.ini`:
+    So just copy needed ID into the file `data/config.ini`:
 
    ```
    [telegram_bot]
@@ -47,7 +48,7 @@ First of all, you have to run the script with parameter `--list-telegram-chats` 
    chat_id=-469669482
    ```
 
-    *Note: if you get empty list of chats, just send some dummy message in the needed chat yourself (message should start with `/` character, for example `/hello`).*
+    *Note: if you get empty list, just send some dummy message in the needed chat yourself (message should start with `/` character, for example `/hello`) and run the command again.*
 
 
 #### Blogger
@@ -67,30 +68,38 @@ Put client id and client secret to the configuration file:
 
    ```
    $ ./run.sh --blogger-login
+   # use 'run.bat' for windows #
+   Go here if browser was not open automatically: https://accounts.google.com/o/oauth2/auth?client_id=8626...
+   Authorize and put fetched code value to the config
    ```
 
-    Which should show a link and open a web browser (use the link if was not open automatically), where you should log in and grant needed permissions to the application.
+    Which will show you a link and open a web browser (use the link if it was not open automatically), where you should log in and grant needed permissions to the application.
     Then copy result code value to the config file:
 
    ```
    [blogger_post]
    ...
-   code=4/1...RA4
+   code=4/11...asRA4
    ```
+
+   *Note: this action is needed only once, in the future everything will work through the `refresh_token` without any extra interactions.*
    
-   *Note: this action is needed only once, in the future everything will work through that code without any extra interactions.*
+   *Note: the application should be able to write data to its config file `data/config.ini`, where it will save the `refresh_token` value.*
 
 
-#### Install python
+#### Python (Windows)
 
 1. Go to the [website](https://www.python.org/downloads/), download and install python package (check "Add python to PATH" option).
 
 2. Install all the needed libraries listed in the `requirements.txt` file.
-This could be done with python packages manager:
+This could be easily done with python package manager (in console):
 
    ```
+   cd X:\path\to\app\
    pip install -r requirements.txt
    ```
+
+    *Note: if you can not run `pip` due to "is not recognized as an internal or external command" error, you have to [configure PATH value](https://stackoverflow.com/questions/23708898/pip-is-not-recognized-as-an-internal-or-external-command) additionally.*
 
 
 ### Usage
