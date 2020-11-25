@@ -32,11 +32,15 @@ def main(argv):
         input_data = ACDSeeXmp(input_file_name, input_file_content)
         input_data_parsed = input_data.get_parsed_data()
 
-        #telegram_bot.send_data(input_data_parsed)
-        #print('Successfully sent via Telegram API!')
+        telegram_bot.send_data(input_data_parsed)
+        print('Successfully sent via Telegram API')
 
-        result_link = blogger_post.create_post(input_data_parsed)
-        print('Successfully created post via Blogger API:', result_link)
+        result = blogger_post.create_post(input_data_parsed)
+        print('Successfully created post via Blogger API:', result['new_post_url'])
+        webbrowser.open(result['new_post_url'])
+
+        # Google OAuth2 refresh_token is needed for the following sessions, so let's save it
+        config.set_config('blogger_post', {'refresh_token': result['refresh_token']})
 
 
 def print_help(executable):

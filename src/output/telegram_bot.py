@@ -13,7 +13,7 @@ class TelegramBot:
         Prepare an instance
         :param config: ConfigParser object
         """
-        if not config['token'] or not config['chat_id']:
+        if 'token' not in config or 'chat_id' not in config:
             raise Exception('Telegram bot configuration is not fully filled')
         else:
             self.token = config['token']
@@ -34,12 +34,17 @@ class TelegramBot:
         response = requests.get(self.get_url(self.GET_UPDATES_PATH))
         response_json = response.json()
 
-        if not response_json['ok']:
+        if 'ok' not in response_json:
             raise Exception('Failed to get updates: ' + response.text)
 
         return response_json['result']
 
     def send_data(self, data):
+        """
+        Send a message with an attached videofile
+        :param data:
+        :return:
+        """
         caption = data['title'] + '\n\n' + data['text']
 
         files = {
@@ -49,13 +54,13 @@ class TelegramBot:
         values = {
             'chat_id': self.chat_id,
             'caption': caption,
-            #'parse_mode': 'MarkdownV2'
+            # 'parse_mode': 'MarkdownV2'
         }
 
         response = requests.post(self.get_url(self.SEND_VIDEO_PATH), files=files, data=values)
         response_json = response.json()
 
-        if not response_json['ok']:
+        if 'ok' not in response_json:
             raise Exception('Failed to send data: ' + response.text)
 
         return response_json['result']
