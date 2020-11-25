@@ -3,6 +3,11 @@ import requests
 
 
 def is_image(filename):
+    """
+    Check if the filename points to image (by extension)
+    :param filename:
+    :return:
+    """
     ext = os.path.splitext(os.path.abspath(filename))[1]
     return ext.lower() in ('jpg', 'jpeg', 'png', 'gif')
 

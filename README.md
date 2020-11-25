@@ -4,7 +4,7 @@ This is a script that takes a video or photo file and posts it to a Telegram cha
 
 The script can be used to support the scenario, when a user keeps all their media files and comments to them locally, and posts some of them to the Internet. 
 
-Just clone or [download](https://github.com/lwp-emelnik/videouploader/archive/main.zip) this repository, it's portable ready to use.
+Just clone or [download](https://github.com/lwp-emelnik/postmediafile/archive/main.zip) this repository, it's portable ready to use.
 
 
 ### Currently supported
@@ -114,7 +114,7 @@ $ ./run.sh /path/to/file
 For example (Windows):
 
 ```batch
-C:\Users\user> C:\Users\user\Desktop\videouploader\run.bat "C:\Users\user\Desktop\videouploader\test\data\2020_09_03_test file with caption.mp4.xmp"
+C:\Users\user> C:\Users\user\Desktop\postmediafile\run.bat "C:\Users\user\Desktop\postmediafile\test\data\2020_09_03_test file with caption.mp4.xmp"
 ```
 
 Also, you can use a context menu option "Open with" and associate the "run.bat" file there, after that you can just run the same thing much easier with doubleclick on XMP file.
