@@ -1,4 +1,10 @@
+import os
 import requests
+
+
+def is_image(filename):
+    ext = os.path.splitext(os.path.abspath(filename))[1]
+    return ext.lower() in ('jpg', 'jpeg', 'png', 'gif')
 
 
 class TelegramBot:
@@ -6,6 +12,7 @@ class TelegramBot:
     API_ENDPOINT_URL = 'https://api.telegram.org/bot'
     GET_UPDATES_PATH = 'getUpdates'
     SEND_MESSAGE_PATH = 'sendMessage'
+    SEND_PHOTO_PATH = 'sendPhoto'
     SEND_VIDEO_PATH = 'sendVideo'
 
     def __init__(self, config):
@@ -41,15 +48,11 @@ class TelegramBot:
 
     def send_data(self, data):
         """
-        Send a message with an attached videofile
+        Send a message with an attached image or video file
         :param data:
         :return:
         """
         caption = data['title'] + '\n\n' + data['text']
-
-        files = {
-            'video': open(data['sidecar_file_name'], 'rb')
-        }
 
         values = {
             'chat_id': self.chat_id,
@@ -57,7 +60,14 @@ class TelegramBot:
             # 'parse_mode': 'MarkdownV2'
         }
 
-        response = requests.post(self.get_url(self.SEND_VIDEO_PATH), files=files, data=values)
+        if is_image(data['sidecar_file_name']):
+            files = {'image': open(data['sidecar_file_name'], 'rb')}
+            url = self.get_url(self.SEND_VIDEO_PATH)
+        else:
+            files = {'photo': open(data['sidecar_file_name'], 'rb')}
+            url = self.get_url(self.SEND_PHOTO_PATH)
+
+        response = requests.post(url, files=files, data=values)
         response_json = response.json()
 
         if 'ok' not in response_json:
